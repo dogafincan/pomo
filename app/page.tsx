@@ -156,6 +156,30 @@ export default function Home() {
     );
   }, [totalSeconds, secondsRemaining]);
 
+  const upcomingPhase = useMemo(
+    () =>
+      resolveNextPhase({
+        currentPhase: phase,
+        completedCount: completedPomodoros,
+        creditFocus: phase === "work",
+      }),
+    [completedPomodoros, phase],
+  );
+
+  const cyclePosition = useMemo(() => {
+    const completedInCycle = completedPomodoros % 4;
+
+    if (phase === "work") {
+      return completedInCycle + 1;
+    }
+
+    return completedInCycle === 0 ? 4 : completedInCycle;
+  }, [completedPomodoros, phase]);
+
+  const nextPhaseLabel = PHASE_LABELS[upcomingPhase.nextPhase];
+  const nextPhaseMinutes = Math.round(upcomingPhase.nextSeconds / 60);
+  const timerStatusLabel = isRunning ? "Running" : "Paused";
+
   const handleToggle = () => {
     if (secondsRemaining === 0) {
       setSecondsRemaining(PHASE_DURATION_SECONDS[phase]);
@@ -209,9 +233,63 @@ export default function Home() {
               {progress}%
             </span>
           </div>
+          <div className="w-full rounded-lg border p-4">
+            <div className="grid gap-4 text-left sm:grid-cols-3">
+              <div className="space-y-1">
+                <p className="text-[11px] uppercase tracking-wide text-muted-foreground">
+                  Cycle
+                </p>
+                <p className="text-lg font-semibold leading-none">
+                  {cyclePosition} / 4
+                </p>
+                <p className="text-xs text-muted-foreground">
+                  Focus rounds in this set
+                </p>
+              </div>
+              <div className="space-y-1">
+                <p className="text-[11px] uppercase tracking-wide text-muted-foreground">
+                  Next up
+                </p>
+                <p className="text-lg font-semibold leading-none">
+                  {nextPhaseLabel}
+                </p>
+                <p className="text-xs text-muted-foreground">
+                  {nextPhaseMinutes} minute interval
+                </p>
+              </div>
+              <div className="space-y-1">
+                <p className="text-[11px] uppercase tracking-wide text-muted-foreground">
+                  Total focus
+                </p>
+                <p className="text-lg font-semibold leading-none">
+                  {completedPomodoros}
+                </p>
+                <p className="text-xs text-muted-foreground">
+                  Sessions completed overall
+                </p>
+              </div>
+            </div>
+          </div>
         </CardContent>
-        <CardFooter className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex flex-wrap gap-2">
+        <CardFooter className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex items-center gap-6 text-left">
+            <div className="space-y-1">
+              <p className="text-[11px] uppercase tracking-wide text-muted-foreground">
+                Status
+              </p>
+              <p className="text-sm font-semibold leading-none">
+                {timerStatusLabel}
+              </p>
+            </div>
+            <div className="hidden h-8 w-px bg-border sm:block" />
+            <div className="space-y-1">
+              <p className="text-[11px] uppercase tracking-wide text-muted-foreground">
+                Current phase
+              </p>
+              <p className="text-sm font-semibold leading-none">{phaseLabel}</p>
+            </div>
+          </div>
+          <div className="flex flex-wrap gap-2 sm:justify-end">
             <Button className="min-w-[120px]" onClick={handleToggle}>
               {isRunning ? (
                 <>
@@ -233,12 +311,6 @@ export default function Home() {
               <SkipForward className="mr-2 h-4 w-4" />
               Skip
             </Button>
-          </div>
-          <div className="text-sm text-muted-foreground">
-            Completed focus rounds:{" "}
-            <span className="font-semibold text-foreground">
-              {completedPomodoros}
-            </span>
           </div>
         </CardFooter>
       </Card>
