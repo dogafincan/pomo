@@ -212,7 +212,7 @@ export default function Home() {
         </CardContent>
         <CardFooter className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-wrap gap-2">
-            <Button onClick={handleToggle}>
+            <Button className="min-w-[120px]" onClick={handleToggle}>
               {isRunning ? (
                 <>
                   <Pause className="mr-2 h-4 w-4" />
