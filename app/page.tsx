@@ -255,14 +255,11 @@ export default function Home() {
               />
             </svg>
             <div className="absolute inset-0 flex flex-col items-center justify-center gap-1 text-center">
-              <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                {phaseLabel} session
-              </span>
               <p className="font-mono text-5xl md:text-6xl">
                 {formatTime(secondsRemaining)}
               </p>
               <span className="text-xs text-muted-foreground">
-                {progress}% complete
+                {cyclePosition} of 4 sessions
               </span>
             </div>
           </div>
