@@ -155,6 +155,17 @@ export default function Home() {
       Math.max(0, Math.round((elapsed / totalSeconds) * 100)),
     );
   }, [totalSeconds, secondsRemaining]);
+  const progressCircle = useMemo(() => {
+    const radius = 120;
+    const circumference = 2 * Math.PI * radius;
+    const dashOffset = circumference * ((100 - progress) / 100);
+
+    return {
+      radius,
+      circumference,
+      dashOffset,
+    };
+  }, [progress]);
 
   const upcomingPhase = useMemo(
     () =>
@@ -211,27 +222,49 @@ export default function Home() {
           </CardDescription>
         </CardHeader>
         <CardContent className="flex flex-col items-center gap-6">
-          <div className="flex flex-col items-center gap-2 text-center">
-            <span className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
-              {phaseLabel} session
-            </span>
-            <p className="font-mono text-6xl md:text-7xl">
-              {formatTime(secondsRemaining)}
-            </p>
-            <span className="text-xs text-muted-foreground">
-              {isRunning ? "Timer running" : "Timer paused"}
-            </span>
-          </div>
-          <div className="flex w-full items-center gap-3">
-            <div className="h-2 flex-1 overflow-hidden rounded-full bg-muted">
-              <div
-                className="h-full rounded-full bg-primary transition-all"
-                style={{ width: `${progress}%` }}
+          <div className="relative flex h-72 w-72 items-center justify-center">
+            <svg
+              className="h-full w-full"
+              viewBox="0 0 272 272"
+              role="presentation"
+            >
+              <circle
+                cx="136"
+                cy="136"
+                r={progressCircle.radius}
+                fill="transparent"
+                stroke="currentColor"
+                strokeWidth="18"
+                className="text-muted-foreground/20"
               />
+              <circle
+                cx="136"
+                cy="136"
+                r={progressCircle.radius}
+                fill="transparent"
+                stroke="currentColor"
+                strokeWidth="18"
+                strokeLinecap="round"
+                strokeDasharray={progressCircle.circumference}
+                strokeDashoffset={progressCircle.dashOffset}
+                className="text-foreground transition-[stroke-dashoffset] duration-300 ease-linear"
+                style={{
+                  transformOrigin: "center",
+                  transform: "rotate(-90deg)",
+                }}
+              />
+            </svg>
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-1 text-center">
+              <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                {phaseLabel} session
+              </span>
+              <p className="font-mono text-5xl md:text-6xl">
+                {formatTime(secondsRemaining)}
+              </p>
+              <span className="text-xs text-muted-foreground">
+                {progress}% complete
+              </span>
             </div>
-            <span className="w-12 text-right text-xs font-medium text-muted-foreground">
-              {progress}%
-            </span>
           </div>
           <div className="w-full rounded-lg border p-4">
             <div className="grid gap-4 text-left sm:grid-cols-3">
