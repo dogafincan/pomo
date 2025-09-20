@@ -250,7 +250,7 @@ export default function Home() {
             <Button
               variant="ghost"
               size="icon"
-              className="h-12 w-12 rounded-full"
+              className="h-12 w-12 rounded-full bg-muted text-muted-foreground hover:bg-muted"
               onClick={handleReset}
             >
               <RotateCcw className="h-5 w-5" />
@@ -269,7 +269,7 @@ export default function Home() {
             <Button
               variant="ghost"
               size="icon"
-              className="h-12 w-12 rounded-full"
+              className="h-12 w-12 rounded-full bg-muted text-muted-foreground hover:bg-muted"
               onClick={handleSkip}
             >
               <SkipForward className="h-5 w-5" />
