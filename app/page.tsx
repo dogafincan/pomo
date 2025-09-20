@@ -275,22 +275,8 @@ export default function Home() {
               <SkipForward className="h-5 w-5" />
             </Button>
           </div>
-          <div className="flex items-center gap-6 text-left">
-            <div className="space-y-1 text-center">
-              <p className="text-[11px] uppercase tracking-wide text-muted-foreground">
-                Status
-              </p>
-              <p className="text-sm font-semibold leading-none">
-                {timerStatusLabel}
-              </p>
-            </div>
-            <div className="hidden h-8 w-px bg-border sm:block" />
-            <div className="space-y-1 text-center">
-              <p className="text-[11px] uppercase tracking-wide text-muted-foreground">
-                Current phase
-              </p>
-              <p className="text-sm font-semibold leading-none">{phaseLabel}</p>
-            </div>
+          <div className="sr-only" aria-live="polite">
+            {timerStatusLabel} – {phaseLabel}
           </div>
         </CardContent>
         <CardFooter className="hidden" />
