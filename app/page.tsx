@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
@@ -26,9 +25,9 @@ const PHASE_DURATION_SECONDS: Record<Phase, number> = {
 };
 
 const PHASE_LABELS: Record<Phase, string> = {
-  work: "Focus",
-  "short-break": "Short break",
-  "long-break": "Long break",
+  work: "Focus Session",
+  "short-break": "Short Break",
+  "long-break": "Long Break",
 };
 
 const formatTime = (totalSeconds: number) => {
@@ -167,16 +166,6 @@ export default function Home() {
     };
   }, [progress]);
 
-  const upcomingPhase = useMemo(
-    () =>
-      resolveNextPhase({
-        currentPhase: phase,
-        completedCount: completedPomodoros,
-        creditFocus: phase === "work",
-      }),
-    [completedPomodoros, phase],
-  );
-
   const cyclePosition = useMemo(() => {
     const completedInCycle = completedPomodoros % 4;
 
@@ -187,8 +176,6 @@ export default function Home() {
     return completedInCycle === 0 ? 4 : completedInCycle;
   }, [completedPomodoros, phase]);
 
-  const nextPhaseLabel = PHASE_LABELS[upcomingPhase.nextPhase];
-  const nextPhaseMinutes = Math.round(upcomingPhase.nextSeconds / 60);
   const timerStatusLabel = isRunning ? "Running" : "Paused";
 
   const handleToggle = () => {
@@ -214,12 +201,8 @@ export default function Home() {
   return (
     <main className="container mx-auto flex min-h-screen flex-col items-center justify-center px-4 py-10">
       <Card className="w-full max-w-2xl">
-        <CardHeader>
-          <CardTitle>Pomodoro Timer</CardTitle>
-          <CardDescription>
-            Track four-focus cycles with short breaks and a long reset every
-            fourth pomodoro.
-          </CardDescription>
+        <CardHeader className="items-center text-center">
+          <CardTitle>{phaseLabel}</CardTitle>
         </CardHeader>
         <CardContent className="flex flex-col items-center gap-6">
           <div className="relative flex h-72 w-72 items-center justify-center">
@@ -292,47 +275,8 @@ export default function Home() {
               <SkipForward className="h-5 w-5" />
             </Button>
           </div>
-          <div className="w-full rounded-lg border p-4">
-            <div className="grid gap-4 text-left sm:grid-cols-3">
-              <div className="space-y-1">
-                <p className="text-[11px] uppercase tracking-wide text-muted-foreground">
-                  Cycle
-                </p>
-                <p className="text-lg font-semibold leading-none">
-                  {cyclePosition} / 4
-                </p>
-                <p className="text-xs text-muted-foreground">
-                  Focus rounds in this set
-                </p>
-              </div>
-              <div className="space-y-1">
-                <p className="text-[11px] uppercase tracking-wide text-muted-foreground">
-                  Next up
-                </p>
-                <p className="text-lg font-semibold leading-none">
-                  {nextPhaseLabel}
-                </p>
-                <p className="text-xs text-muted-foreground">
-                  {nextPhaseMinutes} minute interval
-                </p>
-              </div>
-              <div className="space-y-1">
-                <p className="text-[11px] uppercase tracking-wide text-muted-foreground">
-                  Total focus
-                </p>
-                <p className="text-lg font-semibold leading-none">
-                  {completedPomodoros}
-                </p>
-                <p className="text-xs text-muted-foreground">
-                  Sessions completed overall
-                </p>
-              </div>
-            </div>
-          </div>
-        </CardContent>
-        <CardFooter className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-6 text-left">
-            <div className="space-y-1">
+            <div className="space-y-1 text-center">
               <p className="text-[11px] uppercase tracking-wide text-muted-foreground">
                 Status
               </p>
@@ -341,17 +285,15 @@ export default function Home() {
               </p>
             </div>
             <div className="hidden h-8 w-px bg-border sm:block" />
-            <div className="space-y-1">
+            <div className="space-y-1 text-center">
               <p className="text-[11px] uppercase tracking-wide text-muted-foreground">
                 Current phase
               </p>
               <p className="text-sm font-semibold leading-none">{phaseLabel}</p>
             </div>
           </div>
-          <div className="text-sm text-muted-foreground">
-            Completed focus rounds: {completedPomodoros}
-          </div>
-        </CardFooter>
+        </CardContent>
+        <CardFooter className="hidden" />
       </Card>
     </main>
   );
