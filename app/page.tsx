@@ -263,6 +263,35 @@ export default function Home() {
               </span>
             </div>
           </div>
+          <div className="flex items-center justify-center gap-4">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="h-12 w-12 rounded-full"
+              onClick={handleReset}
+            >
+              <RotateCcw className="h-5 w-5" />
+            </Button>
+            <Button
+              size="icon"
+              className="h-16 w-16 rounded-full"
+              onClick={handleToggle}
+            >
+              {isRunning ? (
+                <Pause className="h-5 w-5" />
+              ) : (
+                <Play className="h-5 w-5" />
+              )}
+            </Button>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="h-12 w-12 rounded-full"
+              onClick={handleSkip}
+            >
+              <SkipForward className="h-5 w-5" />
+            </Button>
+          </div>
           <div className="w-full rounded-lg border p-4">
             <div className="grid gap-4 text-left sm:grid-cols-3">
               <div className="space-y-1">
@@ -319,28 +348,8 @@ export default function Home() {
               <p className="text-sm font-semibold leading-none">{phaseLabel}</p>
             </div>
           </div>
-          <div className="flex flex-wrap gap-2 sm:justify-end">
-            <Button className="min-w-[120px]" onClick={handleToggle}>
-              {isRunning ? (
-                <>
-                  <Pause className="mr-2 h-4 w-4" />
-                  Pause
-                </>
-              ) : (
-                <>
-                  <Play className="mr-2 h-4 w-4" />
-                  Start
-                </>
-              )}
-            </Button>
-            <Button variant="outline" onClick={handleReset}>
-              <RotateCcw className="mr-2 h-4 w-4" />
-              Reset
-            </Button>
-            <Button variant="ghost" onClick={handleSkip}>
-              <SkipForward className="mr-2 h-4 w-4" />
-              Skip
-            </Button>
+          <div className="text-sm text-muted-foreground">
+            Completed focus rounds: {completedPomodoros}
           </div>
         </CardFooter>
       </Card>
