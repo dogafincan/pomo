@@ -178,7 +178,7 @@ export default function Home() {
     <main className="container mx-auto flex min-h-screen flex-col items-center justify-center px-4 py-10">
       <Card className="w-full max-w-2xl">
         <CardHeader className="items-center text-center">
-          <CardTitle>{phaseLabel}</CardTitle>
+          <CardTitle className="text-muted-foreground">{phaseLabel}</CardTitle>
         </CardHeader>
         <CardContent className="flex flex-col items-center gap-6">
           <div className="flex flex-col items-center gap-2 text-center">
