@@ -247,14 +247,6 @@ export default function Home() {
             </div>
           </div>
           <div className="flex w-full flex-col gap-3">
-            <Button
-              variant="ghost"
-              className="w-full gap-2 bg-muted text-foreground"
-              onClick={handleReset}
-            >
-              <RotateCcw className="h-4 w-4" />
-              Reset
-            </Button>
             <Button className="w-full gap-2" onClick={handleToggle}>
               {isRunning ? (
                 <>
@@ -268,14 +260,25 @@ export default function Home() {
                 </>
               )}
             </Button>
-            <Button
-              variant="ghost"
-              className="w-full gap-2 bg-muted text-foreground"
-              onClick={handleSkip}
-            >
-              <SkipForward className="h-4 w-4" />
-              Skip
-            </Button>
+            {phase === "work" ? (
+              <Button
+                variant="ghost"
+                className="w-full gap-2 bg-muted text-foreground"
+                onClick={handleReset}
+              >
+                <RotateCcw className="h-4 w-4" />
+                Reset
+              </Button>
+            ) : (
+              <Button
+                variant="ghost"
+                className="w-full gap-2 bg-muted text-foreground"
+                onClick={handleSkip}
+              >
+                <SkipForward className="h-4 w-4" />
+                Skip
+              </Button>
+            )}
           </div>
           <div className="sr-only" aria-live="polite">
             {timerStatusLabel} – {phaseLabel}
