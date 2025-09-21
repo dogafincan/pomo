@@ -1,6 +1,5 @@
 "use client";
 
-import { Pause, Play, RotateCcw, SkipForward } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -80,7 +79,7 @@ const resolveNextPhase = ({
 export default function Home() {
   const [phase, setPhase] = useState<Phase>("work");
   const [secondsRemaining, setSecondsRemaining] = useState(
-    PHASE_DURATION_SECONDS.work,
+    PHASE_DURATION_SECONDS.work
   );
   const [isRunning, setIsRunning] = useState(false);
   const [completedPomodoros, setCompletedPomodoros] = useState(0);
@@ -122,7 +121,7 @@ export default function Home() {
             currentPhase: phase,
             completedCount: count,
             creditFocus,
-          },
+          }
         );
 
         setPhase(nextPhase);
@@ -131,7 +130,7 @@ export default function Home() {
         return nextCompletedCount;
       });
     },
-    [phase],
+    [phase]
   );
 
   useEffect(() => {
@@ -192,37 +191,28 @@ export default function Home() {
             </div>
             <div className="flex flex-col items-center gap-3">
               <Button
-                className="min-w-[160px] gap-2 px-6 font-semibold"
+                size="lg"
+                className="min-w-[160px] gap-2 font-semibold"
                 onClick={handleToggle}
               >
-                {isRunning ? (
-                  <>
-                    <Pause className="h-4 w-4 font-semibold" />
-                    Pause
-                  </>
-                ) : (
-                  <>
-                    <Play className="h-4 w-4 font-semibold" />
-                    Start
-                  </>
-                )}
+                {isRunning ? "Pause" : "Start"}
               </Button>
               {phase === "work" ? (
                 <Button
                   variant="ghost"
-                  className="min-w-[160px] gap-2 bg-muted dark:bg-neutral-900 px-6 font-semibold text-foreground"
+                  size="lg"
+                  className="min-w-[160px] gap-2 bg-muted dark:bg-neutral-900 font-semibold text-foreground"
                   onClick={handleReset}
                 >
-                  <RotateCcw className="h-4 w-4 font-semibold" />
                   Restart
                 </Button>
               ) : (
                 <Button
                   variant="ghost"
-                  className="min-w-[160px] gap-2 bg-muted px-6 font-semibold text-foreground"
+                  size="lg"
+                  className="min-w-[160px] gap-2 bg-muted dark:bg-neutral-900 font-semibold text-foreground"
                   onClick={handleSkip}
                 >
-                  <SkipForward className="h-4 w-4 font-semibold" />
                   Skip
                 </Button>
               )}
