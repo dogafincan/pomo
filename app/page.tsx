@@ -246,33 +246,35 @@ export default function Home() {
               </span>
             </div>
           </div>
-          <div className="flex items-center justify-center gap-4">
+          <div className="flex w-full flex-col gap-3">
             <Button
               variant="ghost"
-              size="icon"
-              className="h-12 w-12 rounded-full bg-muted text-foreground"
+              className="w-full gap-2 bg-muted text-foreground"
               onClick={handleReset}
             >
-              <RotateCcw className="h-5 w-5" />
+              <RotateCcw className="h-4 w-4" />
+              Reset
             </Button>
-            <Button
-              size="icon"
-              className="h-16 w-16 rounded-full"
-              onClick={handleToggle}
-            >
+            <Button className="w-full gap-2" onClick={handleToggle}>
               {isRunning ? (
-                <Pause className="h-5 w-5" />
+                <>
+                  <Pause className="h-4 w-4" />
+                  Pause
+                </>
               ) : (
-                <Play className="h-5 w-5" />
+                <>
+                  <Play className="h-4 w-4" />
+                  Start
+                </>
               )}
             </Button>
             <Button
               variant="ghost"
-              size="icon"
-              className="h-12 w-12 rounded-full bg-muted text-foreground"
+              className="w-full gap-2 bg-muted text-foreground"
               onClick={handleSkip}
             >
-              <SkipForward className="h-5 w-5" />
+              <SkipForward className="h-4 w-4" />
+              Skip
             </Button>
           </div>
           <div className="sr-only" aria-live="polite">
