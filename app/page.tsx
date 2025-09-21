@@ -189,8 +189,8 @@ export default function Home() {
               {cyclePosition} of 4 sessions
             </span>
           </div>
-          <div className="flex w-full flex-col gap-3">
-            <Button className="w-full gap-2" onClick={handleToggle}>
+          <div className="flex flex-col items-center gap-3">
+            <Button className="min-w-[160px] gap-2 px-6" onClick={handleToggle}>
               {isRunning ? (
                 <>
                   <Pause className="h-4 w-4" />
@@ -206,7 +206,7 @@ export default function Home() {
             {phase === "work" ? (
               <Button
                 variant="ghost"
-                className="w-full gap-2 bg-muted text-foreground"
+                className="min-w-[160px] gap-2 bg-muted px-6 text-foreground"
                 onClick={handleReset}
               >
                 <RotateCcw className="h-4 w-4" />
@@ -215,7 +215,7 @@ export default function Home() {
             ) : (
               <Button
                 variant="ghost"
-                className="w-full gap-2 bg-muted text-foreground"
+                className="min-w-[160px] gap-2 bg-muted px-6 text-foreground"
                 onClick={handleSkip}
               >
                 <SkipForward className="h-4 w-4" />
