@@ -182,7 +182,7 @@ export default function Home() {
         </CardHeader>
         <CardContent className="flex flex-col items-center gap-6">
           <div className="flex flex-col items-center gap-2 text-center">
-            <p className="font-mono text-6xl md:text-7xl">
+            <p className="font-mono text-6xl font-semibold md:text-7xl">
               {formatTime(secondsRemaining)}
             </p>
             <span className="text-sm text-muted-foreground">
