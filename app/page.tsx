@@ -80,7 +80,7 @@ const resolveNextPhase = ({
 export default function Home() {
   const [phase, setPhase] = useState<Phase>("work");
   const [secondsRemaining, setSecondsRemaining] = useState(
-    PHASE_DURATION_SECONDS.work,
+    PHASE_DURATION_SECONDS.work
   );
   const [isRunning, setIsRunning] = useState(false);
   const [completedPomodoros, setCompletedPomodoros] = useState(0);
@@ -122,7 +122,7 @@ export default function Home() {
             currentPhase: phase,
             completedCount: count,
             creditFocus,
-          },
+          }
         );
 
         setPhase(nextPhase);
@@ -131,7 +131,7 @@ export default function Home() {
         return nextCompletedCount;
       });
     },
-    [phase],
+    [phase]
   );
 
   useEffect(() => {
@@ -176,7 +176,7 @@ export default function Home() {
 
   return (
     <main className="container mx-auto flex min-h-screen flex-col items-center justify-center px-4 py-10">
-      <Card className="w-full max-w-2xl">
+      <Card className="dark:bg-black w-full max-w-2xl">
         <CardHeader className="items-center text-center">
           <CardTitle className="text-muted-foreground">{phaseLabel}</CardTitle>
         </CardHeader>
@@ -209,7 +209,7 @@ export default function Home() {
             {phase === "work" ? (
               <Button
                 variant="ghost"
-                className="min-w-[160px] gap-2 bg-muted px-6 font-semibold text-foreground"
+                className="min-w-[160px] gap-2 bg-muted dark:bg-neutral-900 px-6 font-semibold text-foreground"
                 onClick={handleReset}
               >
                 <RotateCcw className="h-4 w-4 font-semibold" />
