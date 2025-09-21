@@ -185,20 +185,23 @@ export default function Home() {
             <p className="font-mono text-6xl font-semibold md:text-7xl">
               {formatTime(secondsRemaining)}
             </p>
-            <span className="text-sm text-muted-foreground">
+            <span className="text-sm font-semibold text-muted-foreground">
               {cyclePosition} of 4 sessions
             </span>
           </div>
           <div className="flex flex-col items-center gap-3">
-            <Button className="min-w-[160px] gap-2 px-6" onClick={handleToggle}>
+            <Button
+              className="min-w-[160px] gap-2 px-6 font-semibold"
+              onClick={handleToggle}
+            >
               {isRunning ? (
                 <>
-                  <Pause className="h-4 w-4" />
+                  <Pause className="h-4 w-4 font-semibold" />
                   Pause
                 </>
               ) : (
                 <>
-                  <Play className="h-4 w-4" />
+                  <Play className="h-4 w-4 font-semibold" />
                   Start
                 </>
               )}
@@ -206,19 +209,19 @@ export default function Home() {
             {phase === "work" ? (
               <Button
                 variant="ghost"
-                className="min-w-[160px] gap-2 bg-muted px-6 text-foreground"
+                className="min-w-[160px] gap-2 bg-muted px-6 font-semibold text-foreground"
                 onClick={handleReset}
               >
-                <RotateCcw className="h-4 w-4" />
+                <RotateCcw className="h-4 w-4 font-semibold" />
                 Restart
               </Button>
             ) : (
               <Button
                 variant="ghost"
-                className="min-w-[160px] gap-2 bg-muted px-6 text-foreground"
+                className="min-w-[160px] gap-2 bg-muted px-6 font-semibold text-foreground"
                 onClick={handleSkip}
               >
-                <SkipForward className="h-4 w-4" />
+                <SkipForward className="h-4 w-4 font-semibold" />
                 Skip
               </Button>
             )}
