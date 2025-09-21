@@ -80,7 +80,7 @@ const resolveNextPhase = ({
 export default function Home() {
   const [phase, setPhase] = useState<Phase>("work");
   const [secondsRemaining, setSecondsRemaining] = useState(
-    PHASE_DURATION_SECONDS.work
+    PHASE_DURATION_SECONDS.work,
   );
   const [isRunning, setIsRunning] = useState(false);
   const [completedPomodoros, setCompletedPomodoros] = useState(0);
@@ -122,7 +122,7 @@ export default function Home() {
             currentPhase: phase,
             completedCount: count,
             creditFocus,
-          }
+          },
         );
 
         setPhase(nextPhase);
@@ -131,7 +131,7 @@ export default function Home() {
         return nextCompletedCount;
       });
     },
-    [phase]
+    [phase],
   );
 
   useEffect(() => {
