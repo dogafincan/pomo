@@ -267,7 +267,7 @@ export default function Home() {
                 onClick={handleReset}
               >
                 <RotateCcw className="h-4 w-4" />
-                Reset
+                Restart
               </Button>
             ) : (
               <Button
