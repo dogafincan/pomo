@@ -185,7 +185,7 @@ export default function Home() {
             <p className="font-mono text-6xl font-semibold md:text-7xl">
               {formatTime(secondsRemaining)}
             </p>
-            <span className="text-sm font-semibold text-muted-foreground">
+            <span className="text-base font-semibold text-muted-foreground">
               {cyclePosition} of 4 sessions
             </span>
           </div>
