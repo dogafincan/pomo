@@ -142,30 +142,6 @@ export default function Home() {
     transitionToNextPhase({ creditFocus: phase === "work" });
   }, [isRunning, phase, secondsRemaining, transitionToNextPhase]);
 
-  const totalSeconds = useMemo(() => PHASE_DURATION_SECONDS[phase], [phase]);
-  const progress = useMemo(() => {
-    if (totalSeconds === 0) {
-      return 0;
-    }
-
-    const elapsed = totalSeconds - secondsRemaining;
-    return Math.min(
-      100,
-      Math.max(0, Math.round((elapsed / totalSeconds) * 100)),
-    );
-  }, [totalSeconds, secondsRemaining]);
-  const progressCircle = useMemo(() => {
-    const radius = 120;
-    const circumference = 2 * Math.PI * radius;
-    const dashOffset = circumference * ((100 - progress) / 100);
-
-    return {
-      radius,
-      circumference,
-      dashOffset,
-    };
-  }, [progress]);
-
   const cyclePosition = useMemo(() => {
     const completedInCycle = completedPomodoros % 4;
 
@@ -205,46 +181,13 @@ export default function Home() {
           <CardTitle>{phaseLabel}</CardTitle>
         </CardHeader>
         <CardContent className="flex flex-col items-center gap-6">
-          <div className="relative flex h-72 w-72 items-center justify-center">
-            <svg
-              className="h-full w-full"
-              viewBox="0 0 272 272"
-              role="presentation"
-            >
-              <circle
-                cx="136"
-                cy="136"
-                r={progressCircle.radius}
-                fill="transparent"
-                stroke="currentColor"
-                strokeWidth="18"
-                className="text-muted-foreground/20"
-              />
-              <circle
-                cx="136"
-                cy="136"
-                r={progressCircle.radius}
-                fill="transparent"
-                stroke="currentColor"
-                strokeWidth="18"
-                strokeLinecap="round"
-                strokeDasharray={progressCircle.circumference}
-                strokeDashoffset={progressCircle.dashOffset}
-                className="text-foreground transition-[stroke-dashoffset] duration-300 ease-linear"
-                style={{
-                  transformOrigin: "center",
-                  transform: "rotate(-90deg)",
-                }}
-              />
-            </svg>
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-1 text-center">
-              <p className="font-mono text-5xl md:text-6xl">
-                {formatTime(secondsRemaining)}
-              </p>
-              <span className="text-xs text-muted-foreground">
-                {cyclePosition} of 4 sessions
-              </span>
-            </div>
+          <div className="flex flex-col items-center gap-2 text-center">
+            <p className="font-mono text-6xl md:text-7xl">
+              {formatTime(secondsRemaining)}
+            </p>
+            <span className="text-xs text-muted-foreground">
+              {cyclePosition} of 4 sessions
+            </span>
           </div>
           <div className="flex w-full flex-col gap-3">
             <Button className="w-full gap-2" onClick={handleToggle}>
