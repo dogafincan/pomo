@@ -1,5 +1,6 @@
 "use client";
 
+import { Settings, Trophy } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -79,7 +80,7 @@ const resolveNextPhase = ({
 export default function Home() {
   const [phase, setPhase] = useState<Phase>("work");
   const [secondsRemaining, setSecondsRemaining] = useState(
-    PHASE_DURATION_SECONDS.work
+    PHASE_DURATION_SECONDS.work,
   );
   const [isRunning, setIsRunning] = useState(false);
   const [completedPomodoros, setCompletedPomodoros] = useState(0);
@@ -121,7 +122,7 @@ export default function Home() {
             currentPhase: phase,
             completedCount: count,
             creditFocus,
-          }
+          },
         );
 
         setPhase(nextPhase);
@@ -130,7 +131,7 @@ export default function Home() {
         return nextCompletedCount;
       });
     },
-    [phase]
+    [phase],
   );
 
   useEffect(() => {
@@ -175,8 +176,26 @@ export default function Home() {
 
   return (
     <main className="container mx-auto flex min-h-screen flex-col items-center justify-center px-4 py-10">
-      <Card className="dark:bg-black w-full max-w-2xl">
-        <CardHeader className="items-center text-center">
+      <Card className="dark:bg-black relative w-full max-w-2xl">
+        <div className="absolute left-6 right-6 top-6 flex justify-between">
+          <Button
+            variant="ghost"
+            size="icon"
+            aria-label="View rankings"
+            className="text-neutral-500"
+          >
+            <Trophy className="h-5 w-5" />
+          </Button>
+          <Button
+            variant="ghost"
+            size="icon"
+            aria-label="Open settings"
+            className="text-neutral-500"
+          >
+            <Settings className="h-5 w-5" />
+          </Button>
+        </div>
+        <CardHeader className="mt-16 items-center text-center">
           <CardTitle>{phaseLabel}</CardTitle>
         </CardHeader>
         <CardContent className="flex flex-col items-center">
