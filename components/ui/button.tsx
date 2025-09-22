@@ -12,26 +12,26 @@ const buttonVariants = cva(
         default:
           "bg-neutral-950 dark:bg-neutral-50 text-neutral-50 dark:text-neutral-950",
         destructive:
-          "bg-red-500 text-white hover:bg-red-500/90 focus-visible:ring-red-500/20 dark:focus-visible:ring-red-500/40 dark:bg-red-500/60 dark:bg-red-900 dark:hover:bg-red-900/90 dark:focus-visible:ring-red-900/20 dark:dark:focus-visible:ring-red-900/40 dark:dark:bg-red-900/60",
+          "bg-red-500 text-white focus-visible:ring-red-500/20 dark:focus-visible:ring-red-500/40 dark:bg-red-500/60 dark:bg-red-900 dark:focus-visible:ring-red-900/20 dark:dark:focus-visible:ring-red-900/40 dark:dark:bg-red-900/60",
         outline:
-          "border bg-white hover:bg-neutral-100 hover:text-neutral-900 dark:bg-neutral-200/30 dark:border-neutral-200 dark:hover:bg-neutral-200/50 dark:bg-neutral-950 dark:hover:bg-neutral-800 dark:hover:text-neutral-50 dark:dark:bg-neutral-800/30 dark:dark:border-neutral-800 dark:dark:hover:bg-neutral-800/50",
+          "border bg-white dark:bg-neutral-200/30 dark:border-neutral-200 dark:bg-neutral-950 dark:dark:bg-neutral-800/30 dark:dark:border-neutral-800",
         secondary:
-          "bg-neutral-100 text-neutral-900 hover:bg-neutral-100/80 dark:bg-neutral-800 dark:text-neutral-50 dark:hover:bg-neutral-800/80",
-        ghost: "bg-neutral-200/90 dark:bg-neutral-800/90",
-        link: "text-neutral-900 underline-offset-4 hover:underline dark:text-neutral-50",
+          "bg-neutral-100 dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100",
+        ghost: "text-neutral-950 dark:text-neutral-50",
+        link: "text-neutral-900 underline-offset-4 dark:text-neutral-50",
       },
       size: {
         default: "h-9 px-4 py-2 has-[>svg]:px-3",
         sm: "h-8 gap-1.5 px-3 has-[>svg]:px-2.5",
         lg: "h-12 w-50 has-[>svg]:px-4",
-        icon: "size-9",
+        icon: "size-12",
       },
     },
     defaultVariants: {
       variant: "default",
       size: "default",
     },
-  },
+  }
 );
 
 function Button({
