@@ -161,7 +161,7 @@ export default function Home() {
     setIsRunning((prev) => !prev);
   };
 
-  const handleReset = () => {
+  const handleRestart = () => {
     setIsRunning(false);
     setPhase("work");
     setSecondsRemaining(PHASE_DURATION_SECONDS.work);
@@ -211,7 +211,7 @@ export default function Home() {
                   variant="secondary"
                   size="lg"
                   className="min-w-[160px] gap-2 font-semibold"
-                  onClick={handleReset}
+                  onClick={handleRestart}
                 >
                   Restart
                 </Button>
