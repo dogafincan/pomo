@@ -29,9 +29,9 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          "min-h-screen bg-muted antialiased dark:bg-background",
+          "min-h-screen bg-neutral-100 antialiased dark:bg-neutral-900",
           geistSans.variable,
-          geistMono.variable,
+          geistMono.variable
         )}
       >
         <ThemeProvider
