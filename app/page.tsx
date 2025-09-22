@@ -177,15 +177,15 @@ export default function Home() {
     <main className="container mx-auto flex min-h-screen flex-col items-center justify-center px-4 py-10">
       <Card className="dark:bg-black w-full max-w-2xl">
         <CardHeader className="items-center text-center">
-          <CardTitle className="text-muted-foreground">{phaseLabel}</CardTitle>
+          <CardTitle>{phaseLabel}</CardTitle>
         </CardHeader>
         <CardContent className="flex flex-col items-center">
           <div className="flex w-full flex-col items-center gap-8">
             <div className="flex flex-col items-center gap-2 text-center">
-              <p className="text-black/90 dark:text-white/90 font-mono text-6xl font-semibold md:text-7xl">
+              <p className="text-neutral-950 dark:text-neutral-50 font-mono text-6xl font-semibold md:text-7xl">
                 {formatTime(secondsRemaining)}
               </p>
-              <span className="text-base font-semibold text-muted-foreground">
+              <span className="text-lg font-semibold text-neutral-400">
                 {cyclePosition} of 4 sessions
               </span>
             </div>
