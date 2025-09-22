@@ -1,6 +1,6 @@
 "use client";
 
-import { Settings, Trophy } from "lucide-react";
+import { RotateCcw, Settings, SkipForward, Trophy } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -210,18 +210,28 @@ export default function Home() {
                 <Button
                   variant="secondary"
                   size="lg"
-                  className="min-w-[160px] gap-2 font-semibold"
+                  className="min-w-[160px] gap-1 font-semibold"
                   onClick={handleRestart}
                 >
+                  <RotateCcw
+                    className="size-4"
+                    aria-hidden="true"
+                    strokeWidth={2.75}
+                  />
                   Restart
                 </Button>
               ) : (
                 <Button
                   variant="secondary"
                   size="lg"
-                  className="min-w-[160px] gap-2 font-semibold"
+                  className="min-w-[160px] gap-1 font-semibold"
                   onClick={handleSkip}
                 >
+                  <SkipForward
+                    className="size-4"
+                    aria-hidden="true"
+                    strokeWidth={2.75}
+                  />
                   Skip
                 </Button>
               )}
