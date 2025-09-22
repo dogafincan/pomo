@@ -1,35 +1,31 @@
 # Repository Guidelines
 
-## Project Structure & Module Organization
-- `app/`: App Router entry point; `layout.tsx` holds the frame, `page.tsx` the dashboard UI, and `globals.css` wires Tailwind utilities.
-- `public/`: Static assets served verbatim; drop new images here and reference them with `/asset.svg`.
-- Root configs (`tsconfig.json`, `biome.json`, `postcss.config.mjs`, `next.config.ts`, `components.json`) define TypeScript, linting, build, and shadcn/ui behavior—edit together when tooling shifts.
+## Project Structure & Responsibilities
+- `app/` hosts the App Router entry point: `layout.tsx` wires fonts/theme providers, `page.tsx` renders the Pomodoro UI, and `globals.css` initializes Tailwind v4 + shadcn tokens.
+- `components/ui/` contains shadcn-generated primitives; treat them as the single source of truth for controls.
+- `lib/` stores shared utilities, and `public/` serves static assets. Root configs (`biome.json`, `components.json`, `next.config.ts`, `tsconfig.json`, etc.) must stay in sync when tooling changes.
 
-## Build, Test, and Development Commands
-- `npm install`: Install dependencies after `package.json` changes.
-- `npm run dev`: Start the Turbopack dev server at `http://localhost:3000`.
-- `npm run build`: Create the production bundle; fails on type or lint errors.
-- `npm run start`: Serve the build locally for final verification.
-- `npm run lint` / `npm run format`: Run Biome checks and formatting before opening a PR.
+## Build, Test, and Runtime Commands
+- `npm install` – Install or refresh dependencies (Node 20 LTS recommended).
+- `npm run dev` – Launch the Turbopack dev server at `http://localhost:3000`.
+- `npm run build` / `npm run start` – Validate and serve a production bundle.
+- `npm run lint` – Run Biome checks (includes formatting); fix issues before committing.
+- `npm run format` – Apply Biome’s auto-fixes when lint reports formatting diffs.
 
-## Coding Style & Naming Conventions
-- TypeScript + React function components; export the primary route component as the default.
-- Two-space indentation, `camelCase` variables, `PascalCase` components, and kebab-case route filenames in `app/`.
-- Favor shadcn/ui primitives for structure and keep their classes untouched until the styling pass; limit shared CSS overrides in `globals.css`.
+## UI & Styling Practices
+- Prefer shadcn/ui components wherever possible; do not alter their variants, classes, or token values until the deliberate styling pass at project end.
+- Compose screens by arranging shadcn pieces and Tailwind utilities in the route files. Any custom styling should live alongside the consuming component, not inside shared primitives.
+- The timer currently uses Geist Sans and Geist Mono (via `next/font`); keep new numeric displays on Geist Mono unless functionality demands a change.
+- Header icons (rankings and settings) are placeholders—maintain their minimal styling and avoid building the associated modals until requested.
 
-## Shadcn Component Practices
-- Generate components with `npx shadcn@latest add <component>` so `components.json` stays accurate; outputs live in `components/ui`.
-- Compose existing shadcn parts before building bespoke markup; only create custom primitives when no counterpart exists.
-- Defer design tweaks to the endgame styling phase—avoid editing shadcn styles, tokens, or variants until then.
+## Animation & Interaction Guidelines
+- `motion` and `framer-motion` are installed for later polish but must stay unused until the functionality milestone is complete.
+- Favor simple Tailwind transitions if feedback is necessary, and annotate future animation ideas with `TODO` comments.
 
-## Animation Libraries
-- The `motion` and `framer-motion` packages are preinstalled; hold off on importing them until functionality is complete.
-- Use lightweight CSS/Tailwind transitions during development and note any desired choreo in TODO comments for the styling phase.
+## Testing Expectations
+- No automated test harness ships today. For complex logic, add React Testing Library coverage under `app/__tests__/` and propose an `npm run test` script in the PR.
+- Manually verify timer flows (start, pause, skip, restart, long-break sequencing) before opening a review and document findings in the PR body.
 
-## Testing Guidelines
-- No automated test harness exists yet; when adding logic beyond UI wiring, add lightweight React Testing Library tests under `app/__tests__/` and run them via `npm run test` once a script exists.
-- Smoke-test new routes in the dev server and capture reproduction steps in the PR description.
-
-## Commit & Pull Request Guidelines
-- Write imperative, present-tense commit subjects (`Add timer controls`) with concise bodies when context is needed.
-- Scope each PR to one feature or fix, include screenshots or GIFs for visual changes, link issues, and confirm local lint/build runs in the description.
+## Git & Review Workflow
+- Use small, single-purpose commits with imperative subjects (e.g., `Add rankings icon placeholder`).
+- Confirm `npm run lint` succeeds before pushing. Visual changes should include screenshots or clips, and PRs must call out any manual QA performed.
