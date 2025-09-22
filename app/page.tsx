@@ -201,7 +201,7 @@ export default function Home() {
                 <Button
                   variant="ghost"
                   size="lg"
-                  className="min-w-[160px] gap-2 bg-muted dark:bg-neutral-900 font-semibold text-foreground"
+                  className="min-w-[160px] gap-2 font-semibold"
                   onClick={handleReset}
                 >
                   Restart
@@ -210,7 +210,7 @@ export default function Home() {
                 <Button
                   variant="ghost"
                   size="lg"
-                  className="min-w-[160px] gap-2 bg-muted dark:bg-neutral-900 font-semibold text-foreground"
+                  className="min-w-[160px] gap-2 font-semibold"
                   onClick={handleSkip}
                 >
                   Skip
