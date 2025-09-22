@@ -182,17 +182,17 @@ export default function Home() {
             variant="ghost"
             size="icon"
             aria-label="View rankings"
-            className="text-neutral-500"
+            className="text-neutral-950"
           >
-            <Trophy className="h-5 w-5" />
+            <Trophy className="h-5 w-5" strokeWidth={2.5} />
           </Button>
           <Button
             variant="ghost"
             size="icon"
             aria-label="Open settings"
-            className="text-neutral-500"
+            className="text-neutral-950"
           >
-            <Settings className="h-5 w-5" />
+            <Settings className="h-5 w-5" strokeWidth={2.5} />
           </Button>
         </div>
         <CardHeader className="mt-16 items-center text-center">
