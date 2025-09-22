@@ -182,7 +182,7 @@ export default function Home() {
         <CardContent className="flex flex-col items-center">
           <div className="flex w-full flex-col items-center gap-8">
             <div className="flex flex-col items-center gap-2 text-center">
-              <p className="font-mono text-6xl font-semibold md:text-7xl">
+              <p className="text-black/90 dark:text-white/90 font-mono text-6xl font-semibold md:text-7xl">
                 {formatTime(secondsRemaining)}
               </p>
               <span className="text-base font-semibold text-muted-foreground">
