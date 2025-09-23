@@ -1,9 +1,12 @@
+import { Settings } from "lucide-react";
+import "./settings-bottom-sheet.css";
 import { Sheet } from "@silk-hq/components";
-import "./bottom-sheet.css";
 
-const BottomSheet = () => (
+const SettingsBottomSheet = () => (
   <Sheet.Root license="non-commercial">
-    <Sheet.Trigger>Open</Sheet.Trigger>
+    <Sheet.Trigger className="inline-flex items-center justify-center rounded-2xl text-lg font-medium size-12 bg-neutral-100 dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100">
+      <Settings className="size-7" strokeWidth={2} />
+    </Sheet.Trigger>
     <Sheet.Portal>
       <Sheet.View className="BottomSheet-view" nativeEdgeSwipePrevention={true}>
         <Sheet.Backdrop themeColorDimming="auto" />
@@ -16,4 +19,4 @@ const BottomSheet = () => (
   </Sheet.Root>
 );
 
-export { BottomSheet };
+export { SettingsBottomSheet };

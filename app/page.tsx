@@ -1,8 +1,7 @@
 "use client";
 
-import { RotateCcw, Settings, SkipForward, Trophy } from "lucide-react";
+import { RotateCcw, SkipForward } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -11,7 +10,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { BottomSheet } from "@/components/ui/bottom-sheet";
+import { RankingsBottomSheet } from "@/components/ui/rankings-bottom-sheet";
+import { SettingsBottomSheet } from "@/components/ui/settings-bottom-sheet";
 
 type Phase = "work" | "short-break" | "long-break";
 
@@ -179,12 +179,8 @@ export default function Home() {
     <main className="container mx-auto flex min-h-screen flex-col items-center justify-center px-4 py-10">
       <Card className="dark:bg-black relative w-full max-w-2xl">
         <div className="absolute left-6 right-6 top-6 flex justify-between">
-          <Button variant="secondary" size="icon" aria-label="View rankings">
-            <Trophy className="size-7" strokeWidth={2} />
-          </Button>
-          <Button variant="secondary" size="icon" aria-label="Open settings">
-            <Settings className="size-7" strokeWidth={2} />
-          </Button>
+          <RankingsBottomSheet />
+          <SettingsBottomSheet />
         </div>
         <CardHeader className="mt-16 items-center text-center">
           <CardTitle>{phaseLabel}</CardTitle>
@@ -244,7 +240,6 @@ export default function Home() {
         </CardContent>
         <CardFooter className="hidden" />
       </Card>
-      <BottomSheet />
     </main>
   );
 }
