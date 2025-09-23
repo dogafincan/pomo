@@ -81,7 +81,7 @@ const resolveNextPhase = ({
 export default function Home() {
   const [phase, setPhase] = useState<Phase>("work");
   const [secondsRemaining, setSecondsRemaining] = useState(
-    PHASE_DURATION_SECONDS.work
+    PHASE_DURATION_SECONDS.work,
   );
   const [isRunning, setIsRunning] = useState(false);
   const [completedPomodoros, setCompletedPomodoros] = useState(0);
@@ -123,7 +123,7 @@ export default function Home() {
             currentPhase: phase,
             completedCount: count,
             creditFocus,
-          }
+          },
         );
 
         setPhase(nextPhase);
@@ -132,7 +132,7 @@ export default function Home() {
         return nextCompletedCount;
       });
     },
-    [phase]
+    [phase],
   );
 
   useEffect(() => {
@@ -176,8 +176,8 @@ export default function Home() {
   const phaseLabel = PHASE_LABELS[phase];
 
   return (
-    <main className="container mx-auto flex min-h-screen flex-col items-center justify-center px-4 py-10">
-      <Card className="dark:bg-black relative w-full max-w-2xl">
+    <main className="flex min-h-screen w-full flex-col md:items-center md:justify-center md:px-4 md:py-10">
+      <Card className="relative flex-1 min-h-screen w-full rounded-none border-0 dark:bg-black md:h-auto md:min-h-0 md:max-w-2xl md:flex-none md:rounded-3xl md:border">
         <div className="absolute left-6 right-6 top-6 flex justify-between">
           <RankingsBottomSheet />
           <SettingsBottomSheet />
