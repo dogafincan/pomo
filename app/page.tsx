@@ -1,7 +1,9 @@
 "use client";
 
-import { RotateCcw, Settings, SkipForward, Trophy } from "lucide-react";
+import { RotateCcw, SkipForward } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { RankingsButton } from "@/components/rankings-button";
+import { SettingsButton } from "@/components/settings-button";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -177,12 +179,8 @@ export default function Home() {
     <main className="flex min-h-screen w-full flex-col md:items-center md:justify-center md:px-4 md:py-10">
       <Card className="relative flex-1 min-h-screen w-full gap-0 rounded-none border-0 dark:bg-black justify-between md:h-auto md:min-h-0 md:max-w-2xl md:flex-none md:gap-1 md:rounded-3xl md:border md:justify-start">
         <div className="absolute left-6 right-6 top-6 flex justify-between">
-          <Button variant="secondary" size="icon" aria-label="View rankings">
-            <Trophy className="size-7" strokeWidth={2} />
-          </Button>
-          <Button variant="secondary" size="icon" aria-label="Open settings">
-            <Settings className="size-7" strokeWidth={2} />
-          </Button>
+          <RankingsButton />
+          <SettingsButton />
         </div>
         <div className="flex flex-1 flex-col justify-center md:justify-start">
           <CardHeader className="hidden items-center text-center md:flex md:mt-16 md:justify-center">
