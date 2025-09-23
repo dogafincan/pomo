@@ -177,17 +177,18 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen w-full flex-col md:items-center md:justify-center md:px-4 md:py-10">
-      <Card className="relative flex-1 min-h-screen w-full rounded-none border-0 dark:bg-black md:h-auto md:min-h-0 md:max-w-2xl md:flex-none md:rounded-3xl md:border">
+      <Card className="relative flex-1 min-h-screen w-full gap-0 rounded-none border-0 dark:bg-black justify-between md:h-auto md:min-h-0 md:max-w-2xl md:flex-none md:gap-1 md:rounded-3xl md:border md:justify-start">
         <div className="absolute left-6 right-6 top-6 flex justify-between">
           <RankingsBottomSheet />
           <SettingsBottomSheet />
         </div>
-        <CardHeader className="mt-16 items-center text-center">
-          <CardTitle>{phaseLabel}</CardTitle>
-        </CardHeader>
-        <CardContent className="flex flex-col items-center">
-          <div className="flex w-full flex-col items-center gap-8">
-            <div className="flex flex-col items-center gap-2 text-center">
+        <div className="flex flex-1 flex-col justify-center md:justify-start">
+          <CardHeader className="hidden items-center text-center md:flex md:mt-16 md:justify-center">
+            <CardTitle className="md:text-center">{phaseLabel}</CardTitle>
+          </CardHeader>
+          <CardContent className="flex flex-1 flex-col items-center justify-center gap-2 pt-2 md:gap-2 md:pt-0 md:pb-8">
+            <div className="flex w-full flex-col items-center gap-2 text-center">
+              <CardTitle className="md:hidden">{phaseLabel}</CardTitle>
               <p className="text-neutral-950 dark:text-neutral-50 font-mono text-6xl font-bold md:text-7xl">
                 {formatTime(secondsRemaining)}
               </p>
@@ -195,50 +196,49 @@ export default function Home() {
                 {cyclePosition} of 4 sessions
               </span>
             </div>
-            <div className="flex flex-col items-center gap-3">
-              <Button
-                size="lg"
-                className="min-w-[160px] gap-2 font-semibold"
-                onClick={handleToggle}
-              >
-                {isRunning ? "Pause" : "Start"}
-              </Button>
-              {phase === "work" ? (
-                <Button
-                  variant="secondary"
-                  size="lg"
-                  className="min-w-[160px] gap-1 font-semibold"
-                  onClick={handleRestart}
-                >
-                  <RotateCcw
-                    className="size-4"
-                    aria-hidden="true"
-                    strokeWidth={2.75}
-                  />
-                  Restart
-                </Button>
-              ) : (
-                <Button
-                  variant="secondary"
-                  size="lg"
-                  className="min-w-[160px] gap-1 font-semibold"
-                  onClick={handleSkip}
-                >
-                  <SkipForward
-                    className="size-4"
-                    aria-hidden="true"
-                    strokeWidth={2.75}
-                  />
-                  Skip
-                </Button>
-              )}
+            <div className="sr-only" aria-live="polite">
+              {timerStatusLabel} – {phaseLabel}
             </div>
-          </div>
-          <div className="sr-only" aria-live="polite">
-            {timerStatusLabel} – {phaseLabel}
-          </div>
-        </CardContent>
-        <CardFooter className="hidden" />
+          </CardContent>
+        </div>
+        <CardFooter className="flex flex-col items-center gap-3 pb-10 md:pb-6 md:pt-0">
+          <Button
+            size="lg"
+            className="min-w-[160px] gap-2 font-semibold"
+            onClick={handleToggle}
+          >
+            {isRunning ? "Pause" : "Start"}
+          </Button>
+          {phase === "work" ? (
+            <Button
+              variant="secondary"
+              size="lg"
+              className="min-w-[160px] gap-1 font-semibold"
+              onClick={handleRestart}
+            >
+              <RotateCcw
+                className="size-4"
+                aria-hidden="true"
+                strokeWidth={2.75}
+              />
+              Restart
+            </Button>
+          ) : (
+            <Button
+              variant="secondary"
+              size="lg"
+              className="min-w-[160px] gap-1 font-semibold"
+              onClick={handleSkip}
+            >
+              <SkipForward
+                className="size-4"
+                aria-hidden="true"
+                strokeWidth={2.75}
+              />
+              Skip
+            </Button>
+          )}
+        </CardFooter>
       </Card>
     </main>
   );
