@@ -11,6 +11,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { BottomSheet } from "@/components/ui/bottom-sheet";
 
 type Phase = "work" | "short-break" | "long-break";
 
@@ -243,6 +244,7 @@ export default function Home() {
         </CardContent>
         <CardFooter className="hidden" />
       </Card>
+      <BottomSheet />
     </main>
   );
 }
