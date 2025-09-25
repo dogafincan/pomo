@@ -204,20 +204,11 @@ export default function Home() {
           </CardContent>
         </div>
         <CardFooter className="flex flex-col items-center gap-3 pb-10 md:pb-6 md:pt-0">
-          <Button
-            size="lg"
-            className="min-w-[160px] gap-2 font-semibold"
-            onClick={handleToggle}
-          >
+          <Button onClick={handleToggle}>
             {isRunning ? "Pause" : "Start"}
           </Button>
           {phase === "work" ? (
-            <Button
-              variant="secondary"
-              size="lg"
-              className="min-w-[160px] gap-1 font-semibold"
-              onClick={handleRestart}
-            >
+            <Button variant="secondary" onClick={handleRestart}>
               <RotateCcw
                 className="size-4"
                 aria-hidden="true"
@@ -226,12 +217,7 @@ export default function Home() {
               Restart
             </Button>
           ) : (
-            <Button
-              variant="secondary"
-              size="lg"
-              className="min-w-[160px] gap-1 font-semibold"
-              onClick={handleSkip}
-            >
+            <Button variant="secondary" onClick={handleSkip}>
               <SkipForward
                 className="size-4"
                 aria-hidden="true"
