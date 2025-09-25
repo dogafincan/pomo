@@ -4,12 +4,24 @@ import { RotateCcw, Settings, SkipForward, Trophy } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Button } from "@/components/animate-ui/components/buttons/button";
 import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/animate-ui/primitives/radix/sheet";
+import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
 
 type Phase = "work" | "short-break" | "long-break";
 
@@ -228,6 +240,36 @@ export default function Home() {
           )}
         </CardFooter>
       </Card>
+      <Sheet>
+        <SheetTrigger asChild>
+          <Button>Open</Button>
+        </SheetTrigger>
+        <SheetContent>
+          <SheetHeader>
+            <SheetTitle>Edit profile</SheetTitle>
+            <SheetDescription>
+              Make changes to your profile here. Click save when you&apos;re
+              done.
+            </SheetDescription>
+          </SheetHeader>
+          <div className="grid flex-1 auto-rows-min gap-6 px-4">
+            <div className="grid gap-3">
+              <Label htmlFor="sheet-demo-name">Name</Label>
+              <Input id="sheet-demo-name" defaultValue="Pedro Duarte" />
+            </div>
+            <div className="grid gap-3">
+              <Label htmlFor="sheet-demo-username">Username</Label>
+              <Input id="sheet-demo-username" defaultValue="@peduarte" />
+            </div>
+          </div>
+          <SheetFooter>
+            <Button type="submit">Save changes</Button>
+            <SheetClose asChild>
+              <Button>Close</Button>
+            </SheetClose>
+          </SheetFooter>
+        </SheetContent>
+      </Sheet>
     </main>
   );
 }
