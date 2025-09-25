@@ -2,7 +2,7 @@
 
 import { RotateCcw, Settings, SkipForward, Trophy } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/animate-ui/components/buttons/button";
 import {
   Card,
   CardContent,
