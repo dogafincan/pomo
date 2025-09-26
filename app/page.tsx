@@ -177,10 +177,22 @@ export default function Home() {
     <main className="flex min-h-screen w-full flex-col md:items-center md:justify-center md:px-4 md:py-10">
       <Card className="relative flex-1 min-h-screen w-full gap-0 rounded-none border-0 dark:bg-black justify-between md:h-auto md:min-h-0 md:max-w-2xl md:flex-none md:gap-1 md:rounded-3xl md:border md:justify-start">
         <div className="absolute left-6 right-6 top-6 flex justify-between">
-          <Button variant="secondary" size="icon" aria-label="View rankings">
+          <Button
+            whileHover={{ scale: 1.2 }}
+            whileTap={{ scale: 0.9 }}
+            variant="secondary"
+            size="icon"
+            aria-label="View rankings"
+          >
             <Trophy className="size-7" strokeWidth={2} />
           </Button>
-          <Button variant="secondary" size="icon" aria-label="Open settings">
+          <Button
+            whileHover={{ scale: 1.2 }}
+            whileTap={{ scale: 0.9 }}
+            variant="secondary"
+            size="icon"
+            aria-label="Open settings"
+          >
             <Settings className="size-7" strokeWidth={2} />
           </Button>
         </div>

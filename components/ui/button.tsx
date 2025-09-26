@@ -5,6 +5,8 @@ import * as React from "react";
 
 import { cn } from "@/lib/utils";
 
+const MotionSlot = motion(Slot);
+
 const buttonVariants = cva(
   "inline-flex items-center justify-center gap-1 whitespace-nowrap rounded-2xl text-lg font-semibold",
   {
@@ -34,14 +36,29 @@ type ButtonProps = React.ComponentPropsWithoutRef<"button"> &
   };
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
-    const Comp = asChild ? Slot : motion.button;
+  (
+    {
+      className,
+      variant,
+      size,
+      asChild = false,
+      whileHover,
+      whileTap,
+      ...props
+    },
+    ref,
+  ) => {
+    const Comp = asChild ? MotionSlot : motion.button;
+    const hoverAnimation = whileHover ?? { scale: 1.1 };
+    const tapAnimation = whileTap ?? { scale: 0.95 };
 
     return (
       <Comp
         ref={ref}
         data-slot="button"
         className={cn(buttonVariants({ variant, size, className }))}
+        whileHover={hoverAnimation}
+        whileTap={tapAnimation}
         {...props}
       />
     );
