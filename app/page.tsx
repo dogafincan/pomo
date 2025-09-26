@@ -40,7 +40,9 @@ export default function Home() {
           </div>
         </CardHeader>
         <CardContent className="flex flex-1 flex-col items-center justify-center gap-2 pt-2 md:gap-2 md:pt-0 md:pb-8 md:justify-start">
-          <CardTitle className="hidden md:block md:mt-16 md:text-center">{phaseLabel}</CardTitle>
+          <CardTitle className="hidden md:block md:mt-16 md:text-center">
+            {phaseLabel}
+          </CardTitle>
           <div className="flex w-full flex-col items-center gap-2 text-center">
             <CardTitle className="md:hidden">{phaseLabel}</CardTitle>
             <p className="text-neutral-950 dark:text-neutral-50 font-mono text-6xl font-bold md:text-7xl">
