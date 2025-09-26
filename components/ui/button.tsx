@@ -49,8 +49,8 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     ref,
   ) => {
     const Comp = asChild ? MotionSlot : motion.button;
-    const hoverAnimation = whileHover ?? { scale: 1.1 };
-    const tapAnimation = whileTap ?? { scale: 0.95 };
+    const hoverAnimation = whileHover ?? { scale: size === "icon" ? 1.2 : 1.1 };
+    const tapAnimation = whileTap ?? { scale: size === "icon" ? 0.9 : 0.95 };
 
     return (
       <Comp
