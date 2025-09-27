@@ -1,9 +1,18 @@
 # Repository Guidelines
 
-## Project Structure & Responsibilities
-- `app/` hosts the App Router entry point: `layout.tsx` wires fonts/theme providers, `page.tsx` renders the Pomodoro UI, and `globals.css` initializes Tailwind v4 + shadcn tokens.
-- `components/ui/` contains shadcn-generated primitives; treat them as the single source of truth for controls.
-- `lib/` stores shared utilities, and `public/` serves static assets. Root configs (`biome.json`, `components.json`, `next.config.ts`, `tsconfig.json`, etc.) must stay in sync when tooling changes.
+## Architecture Snapshot
+- `app/layout.tsx` wires the Geist Sans and Geist Mono font variables, injects global styles from `app/globals.css`, and is the single place to introduce providers.
+- `app/page.tsx` composes the timer screen from shadcn-style primitives, the `usePomodoroTimer` hook, and placeholder bottom sheets for future rankings/settings work.
+- `hooks/use-pomodoro-timer.ts` holds state management: it drives the countdown loop, phase transitions, and exposes event handlers consumed by the page.
+- `lib/pomodoro.ts` centralizes the pomodoro constants (`PHASE_DURATION_SECONDS`, `PHASE_LABELS`) and helpers (`formatTime`, `resolveNextPhase`, `getCyclePosition`). Adjust timer behavior here so the hook and UI stay in sync.
+- `components/ui/` contains primitives shared across the app: `button.tsx` wraps Radix `Slot` with `framer-motion` micro-interactions, `card.tsx` mirrors the shadcn card API, and the bottom sheet triggers pull in `@silk-hq/components` (with CSS helpers in sibling `.css` files). Keep design tokens and interaction logic inside these primitives.
+
+## Styling & Interaction Guidelines
+- Global styles import Tailwind v4, `tw-animate-css`, and Silk layered styles; scope new theme tokens in `app/globals.css` so primitives inherit them automatically.
+- Compose screens with the primitives in `components/ui` plus Tailwind utility classes. Prefer colocated styles (CSS modules or inline Tailwind) next to the consuming component.
+- Numeric displays and timers should continue using Geist Mono. Reserve Geist Sans for headings and supporting copy to match the existing hierarchy.
+- The `Button` component already provides subtle hover/tap motion via `framer-motion`. Avoid introducing additional animation libraries or bespoke motion code outside these primitives; if richer motion is required, add a `TODO` and defer until the polish phase.
+- Ranking and settings sheets intentionally show “Coming soon…”. Leave licensing props and trigger styling untouched until those features ship.
 
 ## Build, Test, and Runtime Commands
 - `npm install` – Install or refresh dependencies (Node 20 LTS recommended).
@@ -12,20 +21,10 @@
 - `npm run lint` – Run Biome checks (includes formatting); fix issues before committing.
 - `npm run format` – Apply Biome’s auto-fixes when lint reports formatting diffs.
 
-## UI & Styling Practices
-- Prefer shadcn/ui components wherever possible; do not alter their variants, classes, or token values until the deliberate styling pass at project end.
-- Compose screens by arranging shadcn pieces and Tailwind utilities in the route files. Any custom styling should live alongside the consuming component, not inside shared primitives.
-- The timer currently uses Geist Sans and Geist Mono (via `next/font`); keep new numeric displays on Geist Mono unless functionality demands a change.
-- Header icons (rankings and settings) are placeholders—maintain their minimal styling and avoid building the associated modals until requested.
-
-## Animation & Interaction Guidelines
-- `motion` and `framer-motion` are installed for later polish but must stay unused until the functionality milestone is complete.
-- Favor simple Tailwind transitions if feedback is necessary, and annotate future animation ideas with `TODO` comments.
-
 ## Testing Expectations
-- No automated test harness ships today. For complex logic, add React Testing Library coverage under `app/__tests__/` and propose an `npm run test` script in the PR.
-- Manually verify timer flows (start, pause, skip, restart, long-break sequencing) before opening a review and document findings in the PR body.
+- No automated test harness ships today. When tweaking `lib/pomodoro.ts` or `usePomodoroTimer`, add targeted React Testing Library coverage under `app/__tests__/` and include an `npm run test` script in the PR description.
+- Manually verify all timer flows (start, pause, skip, restart, long-break sequencing) before requesting review and document findings in the PR body.
 
 ## Git & Review Workflow
-- Use small, single-purpose commits with imperative subjects (e.g., `Add rankings icon placeholder`).
-- Confirm `npm run lint` succeeds before pushing. Visual changes should include screenshots or clips, and PRs must call out any manual QA performed.
+- Keep commits small and purposeful with imperative subjects (e.g., `Add long break status label`).
+- Run `npm run lint` before pushing. Surface visual changes with screenshots or clips, and note any manual QA performed in the PR template.
