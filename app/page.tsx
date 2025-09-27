@@ -30,7 +30,7 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen w-full flex-col md:items-center md:justify-center md:px-4 md:py-10">
-      <Card className="relative flex-1 min-h-screen w-full gap-0 rounded-none border-0 dark:bg-black justify-between md:h-auto md:min-h-0 md:max-w-2xl md:flex-none md:gap-1 md:rounded-3xl md:border md:justify-start">
+      <Card className="relative flex-1 min-h-screen w-full gap-0 dark:bg-black justify-between md:h-auto md:min-h-0 md:max-w-2xl md:flex-none md:gap-1 md:rounded-3xl md:justify-start">
         <CardHeader className="absolute left-6 right-6 top-6 grid grid-cols-[auto_auto] items-center gap-0 px-0 py-0">
           <RankingsBottomSheet />
           <div className="justify-self-end">
