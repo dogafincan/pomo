@@ -1,20 +1,15 @@
-import { Settings } from "lucide-react";
+import { Settings, X } from "lucide-react";
 import { useState } from "react";
-import "./settings-bottom-sheet.css";
-import { Sheet } from "@silk-hq/components";
 
 import { Button } from "@/components/ui/button";
+import { LongSheet } from "@/components/ui/long-sheet";
 
 const SettingsBottomSheet = () => {
   const [presented, setPresented] = useState(false);
 
   return (
-    <Sheet.Root
-      license="non-commercial"
-      presented={presented}
-      onPresentedChange={setPresented}
-    >
-      <Sheet.Trigger asChild>
+    <LongSheet.Root presented={presented} onPresentedChange={setPresented}>
+      <LongSheet.Trigger asChild>
         <Button
           variant="secondary"
           size="icon"
@@ -23,20 +18,28 @@ const SettingsBottomSheet = () => {
         >
           <Settings className="size-7" strokeWidth={2} />
         </Button>
-      </Sheet.Trigger>
-      <Sheet.Portal>
-        <Sheet.View
-          className="BottomSheet-view"
-          nativeEdgeSwipePrevention={true}
-        >
-          <Sheet.Backdrop themeColorDimming="auto" />
-          <Sheet.Content className="BottomSheet-content text-3xl font-semibold">
-            <Sheet.BleedingBackground className="BottomSheet-bleedingBackground" />
-            Coming soon... 👀
-          </Sheet.Content>
-        </Sheet.View>
-      </Sheet.Portal>
-    </Sheet.Root>
+      </LongSheet.Trigger>
+      <LongSheet.Portal>
+        <LongSheet.View>
+          <LongSheet.Backdrop />
+          <LongSheet.Content>
+            <div className="flex justify-end">
+              <Button
+                variant="secondary"
+                size="icon"
+                aria-label="Close settings"
+                onClick={() => setPresented(false)}
+              >
+                <X className="size-6" strokeWidth={2.75} />
+              </Button>
+            </div>
+            <div className="flex flex-1 flex-col items-center justify-center gap-4 text-center text-3xl font-semibold">
+              Coming soon... 👀
+            </div>
+          </LongSheet.Content>
+        </LongSheet.View>
+      </LongSheet.Portal>
+    </LongSheet.Root>
   );
 };
 

@@ -1,0 +1,64 @@
+.LongSheet-view {
+  z-index: 1;
+  top: 0;
+  bottom: initial;
+  height: calc(var(--silk-100-lvh-dvh-pct) + 60px);
+}
+
+.LongSheet-content {
+  box-sizing: border-box;
+}
+
+.LongSheet-scrollRoot {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  scroll-behavior: smooth;
+}
+
+.LongSheet-scrollContent {
+  height: auto;
+  min-height: calc(var(--silk-100-lvh-dvh-pct) - 2.5rem);
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  padding: 1.5rem 2rem;
+}
+
+.LongSheet-innerContent {
+  width: min(72rem, calc(100% - 4rem));
+  border-radius: 36px;
+  overflow: clip;
+  background-color: rgba(255, 255, 255, 0.96);
+  box-shadow:
+    0 40px 80px -32px rgba(15, 23, 42, 0.45),
+    0 24px 48px -24px rgba(15, 23, 42, 0.24);
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  padding: 2.5rem 2.75rem 2.25rem;
+  color: rgb(17, 17, 17);
+  backdrop-filter: blur(26px);
+  min-height: calc(var(--silk-100-lvh-dvh-pct) - 6rem);
+}
+
+.dark .LongSheet-innerContent {
+  background-color: rgba(23, 23, 23, 0.92);
+  color: rgb(245, 245, 245);
+  box-shadow:
+    0 40px 80px -32px rgba(0, 0, 0, 0.7),
+    0 24px 48px -24px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 768px) {
+  .LongSheet-scrollContent {
+    padding: 1rem;
+  }
+
+  .LongSheet-innerContent {
+    width: 100%;
+    border-radius: 28px;
+    padding: 1.75rem 1.5rem 1.5rem;
+    min-height: calc(var(--silk-100-lvh-dvh-pct) - 3.5rem);
+  }
+}
