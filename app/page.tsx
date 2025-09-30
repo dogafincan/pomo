@@ -45,6 +45,7 @@ export default function Home() {
             variant="secondary"
             size="icon"
             aria-label="Open settings"
+            className="justify-self-end"
           >
             <Settings className="size-7" strokeWidth={2} />
           </Button>
