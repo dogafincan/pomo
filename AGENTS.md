@@ -26,5 +26,6 @@
 - Manually verify all timer flows (start, pause, skip, restart, long-break sequencing) before requesting review and document findings in the PR body.
 
 ## Git & Review Workflow
+- Do not create commits unless the user explicitly instructs you to do so.
 - Keep commits small and purposeful with imperative subjects (e.g., `Add long break status label`).
 - Run `npm run lint` before pushing. Surface visual changes with screenshots or clips, and note any manual QA performed in the PR template.
