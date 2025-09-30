@@ -1,6 +1,6 @@
 "use client";
 
-import { RotateCcw, SkipForward } from "lucide-react";
+import { RotateCcw, Settings, SkipForward, Trophy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -9,8 +9,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { RankingsBottomSheet } from "@/components/ui/rankings-bottom-sheet";
-import { SettingsBottomSheet } from "@/components/ui/settings-bottom-sheet";
 
 import { usePomodoroTimer } from "@/hooks/use-pomodoro-timer";
 import { formatTime } from "@/lib/pomodoro";
@@ -32,10 +30,24 @@ export default function Home() {
     <main className="flex min-h-screen w-full flex-col">
       <Card className="relative flex-1 min-h-screen w-full gap-0 dark:bg-black justify-between">
         <CardHeader className="absolute left-6 right-6 top-6 grid grid-cols-[auto_auto] items-center gap-0 px-0 py-0">
-          <RankingsBottomSheet />
-          <div className="justify-self-end">
-            <SettingsBottomSheet />
-          </div>
+          <Button
+            whileHover={{ scale: 1.2 }}
+            whileTap={{ scale: 0.9 }}
+            variant="secondary"
+            size="icon"
+            aria-label="View rankings"
+          >
+            <Trophy className="size-7" strokeWidth={2} />
+          </Button>
+          <Button
+            whileHover={{ scale: 1.2 }}
+            whileTap={{ scale: 0.9 }}
+            variant="secondary"
+            size="icon"
+            aria-label="Open settings"
+          >
+            <Settings className="size-7" strokeWidth={2} />
+          </Button>
         </CardHeader>
         <CardContent className="flex flex-1 flex-col items-center justify-center gap-2 pt-2">
           <div className="flex w-full flex-col items-center gap-2 text-center">
