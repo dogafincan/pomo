@@ -1,20 +1,19 @@
 # Pomodoro Timer
 
-Accessible Pomodoro timer built with Next.js 15 (App Router), Tailwind CSS v4, shadcn-style primitives, and lightweight motion for button feedback. The app keeps four-session focus cycles on track by automatically alternating work sessions, short breaks, and long breaks.
+Accessible Pomodoro timer built with Next.js 15 (App Router), Tailwind CSS v4, shadcn-style primitives, and lightweight CSS animation for button feedback. The app keeps four-session focus cycles on track by automatically alternating work sessions, short breaks, and long breaks.
 
 ## Features
 - Four-phase sequence: 25-minute focus blocks, 5-minute short breaks, and a 30-minute long break after every fourth pomodoro.
 - `usePomodoroTimer` handles countdown state, automatic transitions, skip/restart actions, and exposes a session counter for the UI.
 - Live session indicator (“N of 4 sessions”) and accessible status announcements via aria-live for screen reader support.
 - Responsive layout with dark mode support, Geist Sans headings, and Geist Mono numerals for the timer display.
-- Sheet triggers for rankings and settings powered by `@silk-hq/components`; content remains a placeholder until the features ship.
+- Placeholder rankings/settings icon buttons ready for future sheet integrations.
 
 ## Tech Stack
 - Next.js 15 App Router + React 19
 - Tailwind CSS v4 with `tw-animate-css`
 - shadcn-style UI primitives in `components/ui`
-- `@silk-hq/components` bottom sheet
-- `framer-motion` micro-interactions inside the shared button component
+- tw-animate-css-powered micro-interactions inside the shared button component
 
 ## How It Works
 - Timer constants and helpers live in `lib/pomodoro.ts` (`PHASE_DURATION_SECONDS`, `resolveNextPhase`, `getCyclePosition`, `formatTime`). Adjust durations or sequencing logic here.
@@ -43,7 +42,7 @@ Use Node.js 20 LTS or higher for parity with the Codex environment. When depende
 
 ## Project Layout
 - `app/` – App Router entry point, route components, and global styles.
-- `components/ui/` – Shared primitives (`button`, `card`, bottom sheet triggers) with Tailwind + motion wiring.
+- `components/ui/` – Shared primitives (`button`, `card`) with Tailwind styling and CSS micro-interactions.
 - `hooks/` – Reusable React hooks; currently houses `usePomodoroTimer`.
 - `lib/` – Framework-agnostic utilities and pomodoro logic.
 - `public/` – Static assets served at the site root.
@@ -52,7 +51,7 @@ Use Node.js 20 LTS or higher for parity with the Codex environment. When depende
 ## Development Guidelines
 Consult `AGENTS.md` for the full contributor playbook. Highlights:
 - Build screens from existing primitives before introducing new UI.
-- Keep new animations minimal; reuse the shared button’s motion or add TODOs for future polish.
+- Keep new animations minimal; reuse the shared button’s CSS interaction pattern or add TODOs for future polish.
 - Run `npm run lint` prior to opening a PR and document manual QA of timer flows.
 
 ## Manual QA Checklist

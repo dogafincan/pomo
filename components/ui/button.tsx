@@ -1,11 +1,8 @@
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
-import { type MotionProps, motion } from "framer-motion";
 import * as React from "react";
 
 import { cn } from "@/lib/utils";
-
-const MotionSlot = motion(Slot);
 
 const buttonVariants = cva(
   "inline-flex items-center justify-center gap-1 whitespace-nowrap rounded-2xl text-lg font-semibold",
@@ -30,35 +27,24 @@ const buttonVariants = cva(
 );
 
 type ButtonProps = React.ComponentPropsWithoutRef<"button"> &
-  VariantProps<typeof buttonVariants> &
-  MotionProps & {
+  VariantProps<typeof buttonVariants> & {
     asChild?: boolean;
   };
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  (
-    {
-      className,
-      variant,
-      size,
-      asChild = false,
-      whileHover,
-      whileTap,
-      ...props
-    },
-    ref,
-  ) => {
-    const Comp = asChild ? MotionSlot : motion.button;
-    const hoverAnimation = whileHover ?? { scale: size === "icon" ? 1.2 : 1.1 };
-    const tapAnimation = whileTap ?? { scale: size === "icon" ? 0.9 : 0.95 };
+  ({ className, variant, size, asChild = false, type, ...props }, ref) => {
+    const Comp = asChild ? Slot : "button";
+    const resolvedSize = size ?? "default";
+    const resolvedVariant = variant ?? "default";
 
     return (
       <Comp
         ref={ref}
         data-slot="button"
+        data-size={resolvedSize}
+        data-variant={resolvedVariant}
         className={cn(buttonVariants({ variant, size, className }))}
-        whileHover={hoverAnimation}
-        whileTap={tapAnimation}
+        type={asChild ? undefined : (type ?? "button")}
         {...props}
       />
     );

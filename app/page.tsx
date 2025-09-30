@@ -30,18 +30,10 @@ export default function Home() {
     <main className="flex min-h-screen w-full flex-col">
       <Card className="relative flex-1 min-h-screen w-full gap-0 dark:bg-black justify-between">
         <CardHeader className="absolute left-6 right-6 top-6 grid grid-cols-[auto_auto] items-center gap-0 px-0 py-0">
-          <Button
-            whileHover={{ scale: 1.2 }}
-            whileTap={{ scale: 0.9 }}
-            variant="secondary"
-            size="icon"
-            aria-label="View rankings"
-          >
+          <Button variant="secondary" size="icon" aria-label="View rankings">
             <Trophy className="size-7" strokeWidth={2} />
           </Button>
           <Button
-            whileHover={{ scale: 1.2 }}
-            whileTap={{ scale: 0.9 }}
             variant="secondary"
             size="icon"
             aria-label="Open settings"

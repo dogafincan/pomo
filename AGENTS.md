@@ -2,17 +2,17 @@
 
 ## Architecture Snapshot
 - `app/layout.tsx` wires the Geist Sans and Geist Mono font variables, injects global styles from `app/globals.css`, and is the single place to introduce providers.
-- `app/page.tsx` composes the timer screen from shadcn-style primitives, the `usePomodoroTimer` hook, and placeholder bottom sheets for future rankings/settings work.
+- `app/page.tsx` composes the timer screen from shadcn-style primitives, the `usePomodoroTimer` hook, and placeholder icon triggers for future rankings/settings work.
 - `hooks/use-pomodoro-timer.ts` holds state management: it drives the countdown loop, phase transitions, and exposes event handlers consumed by the page.
 - `lib/pomodoro.ts` centralizes the pomodoro constants (`PHASE_DURATION_SECONDS`, `PHASE_LABELS`) and helpers (`formatTime`, `resolveNextPhase`, `getCyclePosition`). Adjust timer behavior here so the hook and UI stay in sync.
-- `components/ui/` contains primitives shared across the app: `button.tsx` wraps Radix `Slot` with `framer-motion` micro-interactions, `card.tsx` mirrors the shadcn card API, and the bottom sheet triggers pull in `@silk-hq/components` (with CSS helpers in sibling `.css` files). Keep design tokens and interaction logic inside these primitives.
+- `components/ui/` contains primitives shared across the app: `button.tsx` wraps Radix `Slot` with CSS-driven micro-interactions, `card.tsx` mirrors the shadcn card API, and the sheet triggers can be reintroduced alongside their CSS helpers when the features ship. Keep design tokens and interaction logic inside these primitives.
 
 ## Styling & Interaction Guidelines
 - Global styles import Tailwind v4, `tw-animate-css`, and Silk layered styles; scope new theme tokens in `app/globals.css` so primitives inherit them automatically.
 - Compose screens with the primitives in `components/ui` plus Tailwind utility classes. Prefer colocated styles (CSS modules or inline Tailwind) next to the consuming component.
 - Numeric displays and timers should continue using Geist Mono. Reserve Geist Sans for headings and supporting copy to match the existing hierarchy.
-- The `Button` component already provides subtle hover/tap motion via `framer-motion`. Avoid introducing additional animation libraries or bespoke motion code outside these primitives; if richer motion is required, add a `TODO` and defer until the polish phase.
-- Ranking and settings sheets intentionally show “Coming soon…”. Leave licensing props and trigger styling untouched until those features ship.
+- The `Button` component already provides subtle hover/tap motion via CSS powered by `tw-animate-css`. Avoid introducing bespoke motion code outside these primitives; if richer motion is required, add a `TODO` and defer until the polish phase.
+- Rankings and settings are still “Coming soon…”. Keep the placeholder icon affordances until those features ship.
 
 ## Build, Test, and Runtime Commands
 - `npm install` – Install or refresh dependencies (Node 20 LTS recommended).
